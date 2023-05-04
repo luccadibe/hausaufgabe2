@@ -4,3 +4,5 @@ Ein Paar Sachen werden wir klar ändern müssen , z.b. die Tabelle kann nicht so
 gerendert werden. wir können eine Datenstruktur wählen (ich denke einfach eine Liste) und alles
 dynamisch programmieren (das ist der Vorteil von React.) d.h. im Code würden wir mit javascript
 die Daten aus eine Liste rausholen und dynamisch HTML erzeugen.
+
+scheint mir eine gute Idee zu sein - Jakub
