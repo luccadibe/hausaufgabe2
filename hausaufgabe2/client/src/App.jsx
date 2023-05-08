@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
