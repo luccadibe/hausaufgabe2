@@ -22,7 +22,7 @@ function New() {
       toast.error("Füllen Sie Bitte alle leere Kästchen");
     } else {
       axios
-        .post("http://localhost:5000/api/post", {
+        .post("http://localhost:9000/newTodo", {
           name,
           deadline,
           progress,

@@ -2,7 +2,7 @@ const Router = require("express");
 
 const editTodo = Router();
 
-editTodo.post("/editTodo", async (req, res, next) => {
+editTodo.post("/", async (req, res, next) => {
   const mysql = require("mysql2");
   const pool = mysql
     .createPool({
@@ -14,8 +14,10 @@ editTodo.post("/editTodo", async (req, res, next) => {
     .promise();
   try {
     // get variables out of request
+    // IMPORTANT : send variables in JSON format from the Frontend!
     const { name, deadline, fortschritt, id } = req.body;
-    const query = `UPDATE todo SET name = ?, deadline = ?, progress = ? WHERE id = ?`;
+
+    const query = `UPDATE todos SET name = ?, deadline = ?, fortschritt = ? WHERE id = ?`;
     const values = [name, deadline, fortschritt, id];
 
     // Insert the new todo into the database

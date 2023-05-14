@@ -2,7 +2,8 @@ const Router = require("express");
 
 const newTodo = Router();
 
-newTodo.post("/newTodo", async (req, res, next) => {
+newTodo.post("/", async (req, res, next) => {
+  console.log("prueba prueba pruebaa daaatabase");
   //first the connection
   const mysql = require("mysql2");
   const pool = mysql
@@ -14,6 +15,8 @@ newTodo.post("/newTodo", async (req, res, next) => {
     })
     .promise();
   try {
+    //console log test
+    console.log("Inserting new todo in the database");
     // get variables out of request
     const { name, deadline, fortschritt } = req.body;
     // Insert the new todo into the database
