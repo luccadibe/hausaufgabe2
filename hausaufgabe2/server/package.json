@@ -1,4 +1,5 @@
 {
+  
   "name": "todo-backend-api",
   "version": "1.0.0",
   "description": "backend for todo-tracker",
@@ -13,6 +14,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mysql2": "^3.3.0",
     "nodemon": "^2.0.22"
   }
 }
