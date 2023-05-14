@@ -2,7 +2,7 @@ const Router = require("express");
 
 const editTodo = Router();
 
-editTodo.post("/", async (req, res, next) => {
+editTodo.post("/editTodo", async (req, res, next) => {
   const mysql = require("mysql2");
   const pool = mysql
     .createPool({

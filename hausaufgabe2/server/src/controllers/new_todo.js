@@ -2,7 +2,8 @@ const Router = require("express");
 
 const newTodo = Router();
 
-newTodo.post("/", async (req, res, next) => {
+newTodo.post("/newTodo", async (req, res, next) => {
+  //first the connection
   const mysql = require("mysql2");
   const pool = mysql
     .createPool({

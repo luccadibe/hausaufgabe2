@@ -7,12 +7,14 @@ function TodoTable() {
   const [data, setData] = useState([]);
 
   const loadData = async () => {
-    const response = await axios.get("http://localhost:5000/api/get");
+    const response = await axios.get("http://localhost:9000/");
     setData(response.data);
   };
 
   useEffect(() => {
     loadData();
+    console.log("logging data");
+    console.log(data);
   }, []);
 
   const deleteTodo = (id) => {
