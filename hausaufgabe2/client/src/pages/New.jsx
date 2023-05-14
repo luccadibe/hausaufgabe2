@@ -1,70 +1,111 @@
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+const initialState = {
+  name: "",
+  deadline: "",
+  progress: "",
+};
+
 function New() {
+  const [state, setState] = useState(initialState);
+
+  const { name, deadline, progress } = state;
+
+  const history = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !deadline || !progress) {
+      toast.error("Füllen Sie Bitte alle leere Kästchen");
+    } else {
+      axios
+        .post("http://localhost:5000/api/post", {
+          name,
+          deadline,
+          progress,
+        })
+        .then(() => {
+          setState({ name: "", deadline: "", progress: "" });
+        })
+        .catch((err) => toast.error(err.response.data));
+      toast.success("Todo hinzuugefügt");
+      setTimeout(() => history.push("/"), 400);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
+
   return (
     <>
       {" "}
+      <form onSubmit={handleSubmit} />
       <main className="container mt-4">
         <h1>Neues TODO</h1>
       </main>
       <div className="container mt-3">
-        <div className="input-group input-group-lg">
-          <span className="input-group-text" id="inputGroup-sizing-lg">
-            Name der Todo
+        <div className="input-group mt-3">
+          <span className="input-group-text">
+            <label htmlFor="name">Name</label>
           </span>
-
           <input
             type="text"
+            id="name"
+            name="name"
             className="form-control"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg"
-            placeholder="..."
+            placeholder="Name der neuen Todo eingeben"
+            value={name}
+            onChange={handleInputChange}
           />
         </div>
 
         <div className="input-group mt-3">
-          <span className="input-group-text">Deadline</span>
+          <span className="input-group-text">
+            <label htmlFor="deadline">Deadline</label>
+          </span>
+
           <input
             type="text"
-            aria-label="Tag"
+            id="deadline"
+            name="deadline"
             className="form-control"
-            placeholder="Tag"
-          />
-          <input
-            type="text"
-            aria-label="Monat"
-            className="form-control"
-            placeholder="Monat"
-          />
-          <input
-            type="text"
-            aria-label="Jahr"
-            className="form-control"
-            placeholder="Jahr"
+            placeholder="Datum eingeben"
+            value={deadline}
+            onChange={handleInputChange}
           />
         </div>
 
         <div className="input-group mt-3">
-          <span className="input-group-text" id="basic-addon1">
-            %
+          <span className="input-group-text">
+            <label htmlFor="progress">Progress</label>
           </span>
+
           <input
             type="text"
+            id="progress"
+            name="progress"
             className="form-control"
-            placeholder="..."
-            aria-label="Percent"
-            aria-describedby="basic-addon1"
+            placeholder="Prozent eingeben"
+            value={progress}
+            onChange={handleInputChange}
           />
         </div>
 
         <div className="d-grid gap-2 mt-3">
-          <button className="btn btn-primary" type="button">
-            Speichern
-          </button>
+          <Link className="btn btn-primary" type="submit" to="/">
+            Spichern
+          </Link>
         </div>
 
         <div className="d-grid gap-2 mt-3">
-          <button className="btn btn-secondary" type="button">
+          <Link className="btn btn-secondary" type="button" to="/">
             Abbrechen
-          </button>
+          </Link>
         </div>
       </div>
     </>
