@@ -1,4 +1,28 @@
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
+
 function TodoTable() {
+  const [data, setData] = useState([]);
+
+  const loadData = async () => {
+    const response = await axios.get("http://localhost:5000/api/get");
+    setData(response.data);
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const deleteTodo = (id) => {
+    if (window.confirm("Sind Sie sicher?")) {
+      axios.delete(`http://localhost:5000/api/delete/${id}`);
+      toast.success("Todo gelöscht");
+      setTimeout(() => loadData(), 500);
+    }
+  };
+
   return (
     <>
       <div className="table-responsive-sm mt-3">
@@ -18,8 +42,33 @@ function TodoTable() {
               </th>
             </tr>
           </thead>
+
           <tbody>
-            <tr>
+            {data.map((item, index) => {
+              return (
+                <tr key={item.id}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{item.name}</td>
+                  <td className="text-center align-middle">{item.deadline}</td>
+                  <td className="text-center align-middle">{item.progress}</td>
+                  <td className="text-center align-middle">
+                    <Link to={`/edittodo/${item.id}`}>
+                      <button className="btn btn-secondary">Bearbeiten</button>
+                    </Link>
+                    <Link to={`/delete/${item.id}`}>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => deleteTodo(item.id)}
+                      >
+                        Löschen
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
+
+            {/* <tr>
               <th scope="row">1</th>
               <td>Beispielseite mit dem Bootstrap Framework anlegen</td>
               <td className="text-center align-middle">26. April 2023</td>
@@ -131,7 +180,7 @@ function TodoTable() {
                   Löschen
                 </button>
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>
