@@ -15,7 +15,7 @@ editTodo.post("/editTodo", async (req, res, next) => {
   try {
     // get variables out of request
     const { name, deadline, fortschritt, id } = req.body;
-    const query = `UPDATE todo SET name = ?, deadline = ?, progress = ? WHERE id = ?`;
+    const query = `UPDATE todo SET name = ?, deadline = ?, fortschritt = ? WHERE id = ?`;
     const values = [name, deadline, fortschritt, id];
 
     // Insert the new todo into the database

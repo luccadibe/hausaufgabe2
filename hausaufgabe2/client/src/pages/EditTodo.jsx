@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 const initialState = {
   name: "",
   deadline: "",
-  progress: "",
+  fortschritt: "",
 };
 
 function EditTodo() {
   const [state, setState] = useState(initialState);
 
-  const { name, deadline, progress } = state;
+  const { name, deadline, fortschritt } = state;
 
   const history = useNavigate();
 
@@ -28,7 +28,7 @@ function EditTodo() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !deadline || !progress) {
+    if (!name || !deadline || !fortschritt) {
       toast.error("Füllen Sie Bitte alle leere Kästchen");
     } else {
       if (!id) {
@@ -36,10 +36,10 @@ function EditTodo() {
           .post("http://localhost:5000/api/post", {
             name,
             deadline,
-            progress,
+            fortschritt,
           })
           .then(() => {
-            setState({ name: "", deadline: "", progress: "" });
+            setState({ name: "", deadline: "", fortschritt: "" });
           })
           .catch((err) => toast.error(err.response.data));
         toast.success("Todo hinzuugefügt");
@@ -48,10 +48,10 @@ function EditTodo() {
           .put(`http://localhost:5000/api/edit/${id}`, {
             name,
             deadline,
-            progress,
+            fortschritt,
           })
           .then(() => {
-            setState({ name: "", deadline: "", progress: "" });
+            setState({ name: "", deadline: "", fortschritt: "" });
           })
           .catch((err) => toast.error(err.response.data));
         toast.success("Todo bearbeitet");
@@ -106,16 +106,16 @@ function EditTodo() {
 
         <div className="input-group mt-3">
           <span className="input-group-text">
-            <label htmlFor="progress">Progress</label>
+            <label htmlFor="fortschritt">Progress</label>
           </span>
 
           <input
             type="text"
-            id="progress"
-            name="progress"
+            id="fortschritt"
+            name="fortschritt"
             className="form-control"
             placeholder="neue Prozentwert eingeben"
-            value={progress || ""}
+            value={fortschritt || ""}
             onChange={handleInputChange}
           />
         </div>
