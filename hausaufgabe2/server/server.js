@@ -14,6 +14,11 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 //routes
+
+
+//// not sure but it is maybe needed to put id like app.use("/edittodo/:id", editTodo);
+//// same with deletetodo
+//// or maybe in the edit_todo.js 
 app.use("/", table);
 app.use("/newtodo", newTodo);
 app.use("/edittodo", editTodo);
