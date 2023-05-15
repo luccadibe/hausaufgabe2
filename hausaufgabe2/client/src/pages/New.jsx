@@ -16,23 +16,17 @@ function New() {
 
   const history = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !deadline || !fortschritt) {
-      toast.error("Füllen Sie Bitte alle leere Kästchen");
-    } else {
-      axios
-        .post("http://localhost:9000/newTodo", {
-          name,
-          deadline,
-          fortschritt,
-        })
-        .then(() => {
-          setState({ name: "", deadline: "", fortschritt: "" });
-        })
-        .catch((err) => toast.error(err.response.data));
-      toast.success("Todo hinzuugefügt");
-      setTimeout(() => history.push("/"), 400);
+    try {
+      await axios.post("http://localhost:9000/newTodo", {
+        name,
+        deadline,
+        fortschritt,
+      });
+      history("/");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -97,7 +91,12 @@ function New() {
         </div>
 
         <div className="d-grid gap-2 mt-3">
-          <Link className="btn btn-primary" type="submit" to="/">
+          <Link
+            to="/"
+            className="btn btn-primary"
+            type="submit"
+            onClick={handleSubmit}
+          >
             Spichern
           </Link>
         </div>
