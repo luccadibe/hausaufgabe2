@@ -3,7 +3,7 @@ const Router = require("express");
 const newTodo = Router();
 
 newTodo.post("/", async (req, res, next) => {
-  console.log("prueba prueba pruebaa daaatabase");
+  console.log("New todo API Called...");
   //first the connection
   const mysql = require("mysql2");
   const pool = mysql
@@ -15,10 +15,11 @@ newTodo.post("/", async (req, res, next) => {
     })
     .promise();
   try {
-    //console log test
-    console.log("Inserting new todo in the database");
     // get variables out of request
     const { name, deadline, fortschritt } = req.body;
+    console.log(
+      `Inserting: name= ${name}, deadline = ${deadline} , fortschritt = ${fortschritt}`
+    );
     // Insert the new todo into the database
     const [result] = await pool.execute(
       "INSERT INTO todos (name, deadline, fortschritt) VALUES (?, ?, ?)",

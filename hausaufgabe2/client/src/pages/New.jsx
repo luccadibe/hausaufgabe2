@@ -15,14 +15,17 @@ function New() {
   const { name, deadline, fortschritt } = state;
 
   const history = useNavigate();
-
+  //shouldnt this be a function? handleSubmit(e) ?
+  //https://react.dev/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form
   const handleSubmit = (e) => {
+    //this code never runs
+    console.log("Check console to see if this code runs");
     e.preventDefault();
     if (!name || !deadline || !fortschritt) {
       toast.error("Füllen Sie Bitte alle leere Kästchen");
     } else {
       axios
-        .post("http://localhost:9000/newTodo", {
+        .post("http://localhost:9000/newtodo", {
           name,
           deadline,
           fortschritt,
@@ -44,70 +47,77 @@ function New() {
   return (
     <>
       {" "}
-      <form onSubmit={handleSubmit} />
-      <main className="container mt-4">
-        <h1>Neues TODO</h1>
-      </main>
-      <div className="container mt-3">
-        <div className="input-group mt-3">
-          <span className="input-group-text">
-            <label htmlFor="name">Name</label>
-          </span>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            className="form-control"
-            placeholder="Name der neuen Todo eingeben"
-            value={name}
-            onChange={handleInputChange}
-          />
+      {/* shouldnt the form have its closing tag at the end of the form?- i changed it, see link above */}
+      <form method="put" onSubmit={handleSubmit}>
+        <main className="container mt-4">
+          <h1>Neues TODO</h1>
+        </main>
+        <div className="container mt-3">
+          <div className="input-group mt-3">
+            <span className="input-group-text">
+              <label htmlFor="name">Name</label>
+            </span>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className="form-control"
+              placeholder="Name der neuen Todo eingeben"
+              value={name}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="input-group mt-3">
+            <span className="input-group-text">
+              <label htmlFor="deadline">Deadline</label>
+            </span>
+
+            <input
+              type="text"
+              id="deadline"
+              name="deadline"
+              className="form-control"
+              placeholder="Datum eingeben"
+              value={deadline}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="input-group mt-3">
+            <span className="input-group-text">
+              <label htmlFor="fortschritt">Progress</label>
+            </span>
+
+            <input
+              type="text"
+              id="fortschritt"
+              name="fortschritt"
+              className="form-control"
+              placeholder="Prozent eingeben"
+              value={fortschritt}
+              onChange={handleInputChange}
+            />
+          </div>
+          {/* use a button, not a link tag. i fixed this one, fix the one for Abbrechen*/}
+          <div className="d-grid gap-2 mt-3">
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={handleSubmit}
+              to="/"
+            >
+              Speichern
+            </button>
+          </div>
+
+          <div className="d-grid gap-2 mt-3">
+            <Link className="btn btn-secondary" type="button" to="/">
+              Abbrechen
+            </Link>
+          </div>
         </div>
-
-        <div className="input-group mt-3">
-          <span className="input-group-text">
-            <label htmlFor="deadline">Deadline</label>
-          </span>
-
-          <input
-            type="text"
-            id="deadline"
-            name="deadline"
-            className="form-control"
-            placeholder="Datum eingeben"
-            value={deadline}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div className="input-group mt-3">
-          <span className="input-group-text">
-            <label htmlFor="fortschritt">Progress</label>
-          </span>
-
-          <input
-            type="text"
-            id="fortschritt"
-            name="fortschritt"
-            className="form-control"
-            placeholder="Prozent eingeben"
-            value={fortschritt}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div className="d-grid gap-2 mt-3">
-          <Link className="btn btn-primary" type="submit" to="/">
-            Spichern
-          </Link>
-        </div>
-
-        <div className="d-grid gap-2 mt-3">
-          <Link className="btn btn-secondary" type="button" to="/">
-            Abbrechen
-          </Link>
-        </div>
-      </div>
+      </form>
     </>
   );
 }

@@ -21,7 +21,7 @@ function EditTodo() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/get/${id}`)
+      .get(`http://localhost:9000/gettodo/${id}`)
       .then((resp) => setState({ ...resp.data[0] }));
   }, [id]);
   /////
@@ -31,9 +31,11 @@ function EditTodo() {
     if (!name || !deadline || !fortschritt) {
       toast.error("Füllen Sie Bitte alle leere Kästchen");
     } else {
+      // wait but how is this case ever reached? this is the EditTodo code.
+      // ofc the id exists!
       if (!id) {
         axios
-          .post("http://localhost:5000/api/post", {
+          .post("http://localhost:9000/edittodo/", {
             name,
             deadline,
             fortschritt,
@@ -45,10 +47,11 @@ function EditTodo() {
         toast.success("Todo hinzuugefügt");
       } else {
         axios
-          .put(`http://localhost:5000/api/edit/${id}`, {
-            name,
-            deadline,
-            fortschritt,
+          .put(`http://localhost:9000/edittodo`, {
+            name: name,
+            deadline: deadline,
+            fortschritt: fortschritt,
+            id: id,
           })
           .then(() => {
             setState({ name: "", deadline: "", fortschritt: "" });
