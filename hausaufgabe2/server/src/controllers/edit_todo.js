@@ -1,7 +1,6 @@
 const Router = require("express");
 const url = require("url");
 const editTodo = Router();
-//something is wrong with this :id !!
 
 editTodo.put("/", async (req, res, next) => {
   const mysql = require("mysql2");

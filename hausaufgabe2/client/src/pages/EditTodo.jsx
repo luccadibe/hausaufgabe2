@@ -8,7 +8,8 @@ const initialState = {
   deadline: "",
   fortschritt: "",
 };
-
+//it would be much  better if the placeholders were the actual name , deadline and fortschritt
+//of the todo !
 function EditTodo() {
   const [state, setState] = useState(initialState);
 
@@ -44,7 +45,7 @@ function EditTodo() {
             setState({ name: "", deadline: "", fortschritt: "" });
           })
           .catch((err) => toast.error(err.response.data));
-        toast.success("Todo hinzuugefügt");
+        toast.success("Todo hinzugefügt");
       } else {
         axios
           .put(`http://localhost:9000/edittodo`, {
@@ -126,9 +127,14 @@ function EditTodo() {
         {/* damit bin ich nicht sicher  */}
 
         <div className="d-grid gap-2 mt-3">
-          <Link className="btn btn-primary" type="submit" to="/">
-            Spichern
-          </Link>
+          <button
+            className="btn btn-primary"
+            type="submit"
+            onClick={handleSubmit}
+            to="/"
+          >
+            Speichern
+          </button>
         </div>
 
         <div className="d-grid gap-2 mt-3">
