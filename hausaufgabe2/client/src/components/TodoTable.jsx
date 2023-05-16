@@ -19,7 +19,7 @@ function TodoTable() {
 
   const deleteTodo = (id) => {
     if (window.confirm("Sind Sie sicher?")) {
-      axios.delete(`http://localhost:5000/api/delete/${id}`);
+      axios.delete(`http://localhost:9000/deletetodo/${id}`);
       toast.success("Todo gelöscht");
       setTimeout(() => loadData(), 500);
     }
@@ -59,7 +59,7 @@ function TodoTable() {
                     <Link to={`/edittodo/${item.id}`}>
                       <button className="btn btn-secondary">Bearbeiten</button>
                     </Link>
-                    <Link to={`/delete/${item.id}`}>
+                    <Link to={`/`}>
                       <button
                         className="btn btn-danger"
                         onClick={() => deleteTodo(item.id)}
