@@ -5,6 +5,7 @@ import axios from "axios";
 //something is wrong with the positioning of the table elements
 //they are not correctly alligned
 //i will take care of it now
+//should be fixed - it looks bit stupid when names of todo are really short
 function TodoTable() {
   const [data, setData] = useState([]);
 
@@ -33,8 +34,12 @@ function TodoTable() {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">To-Do</th>
+              <th scope="col" className="text-center align-middle">
+                #
+              </th>
+              <th scope="col" className="align-middle">
+                To-Do
+              </th>
               <th scope="col" className="text-center align-middle">
                 Deadline
               </th>
@@ -51,20 +56,28 @@ function TodoTable() {
             {data.map((item, index) => {
               return (
                 <tr key={item.id}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{item.name}</td>
+                  <th scope="row" className="text-center align-middle">
+                    {index + 1}
+                  </th>
+                  <td className="align-middle">{item.name}</td>
                   <td className="text-center align-middle">{item.deadline}</td>
                   <td className="text-center align-middle">
                     {item.fortschritt}
                   </td>
                   <td className="text-center align-middle">
                     <Link to={`/edittodo/${item.id}`}>
-                      <button className="btn btn-secondary">Bearbeiten</button>
+                      <button
+                        className="btn btn-secondary"
+                        style={{ marginRight: 5 }}
+                      >
+                        Bearbeiten
+                      </button>
                     </Link>
                     <Link to={`/`}>
                       <button
                         className="btn btn-danger"
                         onClick={() => deleteTodo(item.id)}
+                        style={{ marginLeft: 5 }}
                       >
                         Löschen
                       </button>

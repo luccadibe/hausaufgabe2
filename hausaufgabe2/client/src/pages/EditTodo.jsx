@@ -111,7 +111,7 @@ function EditTodo() {
 
         <div className="input-group mt-3">
           <span className="input-group-text">
-            <label htmlFor="fortschritt">Progress</label>
+            <label htmlFor="fortschritt">Fortschritt</label>
           </span>
 
           <input

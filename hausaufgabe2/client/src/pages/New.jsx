@@ -63,7 +63,7 @@ function New() {
               id="name"
               name="name"
               className="form-control"
-              placeholder="Name der neuen Todo eingeben"
+              placeholder="Name der neuen Todo"
               value={name}
               onChange={handleInputChange}
             />
@@ -79,7 +79,7 @@ function New() {
               id="deadline"
               name="deadline"
               className="form-control"
-              placeholder="Datum eingeben"
+              placeholder="Tag - Monat - Jahr"
               value={deadline}
               onChange={handleInputChange}
             />
@@ -87,7 +87,7 @@ function New() {
 
           <div className="input-group mt-3">
             <span className="input-group-text">
-              <label htmlFor="fortschritt">Progress</label>
+              <label htmlFor="fortschritt">Fortschritt</label>
             </span>
 
             <input
@@ -95,7 +95,7 @@ function New() {
               id="fortschritt"
               name="fortschritt"
               className="form-control"
-              placeholder="Prozent eingeben"
+              placeholder="%"
               value={fortschritt}
               onChange={handleInputChange}
             />
