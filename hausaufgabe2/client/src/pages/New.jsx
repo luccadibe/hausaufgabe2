@@ -1,29 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
 
-const initialState = {
+const initialTodos = {
   name: "",
   deadline: "",
   fortschritt: "",
 };
 
 function New() {
-  const [state, setState] = useState(initialState);
+  const [todo, setTodo] = useState(initialTodos);
 
-  const { name, deadline, fortschritt } = state;
+  const { name, deadline, fortschritt } = todo;
 
-  const history = useNavigate();
-  //shouldnt this be a function? handleSubmit(e) ?
-  //https://react.dev/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form
-  const handleSubmit = (e) => {
-    //this code never runs
-    console.log("Check console to see if this code runs");
+  const navigate = useNavigate();
+
+  //sendung der Daten an backend server
+  function handleSubmit(e) {
     e.preventDefault();
-    if (!name || !deadline || !fortschritt) {
-      toast.error("Füllen Sie Bitte alle leere Kästchen");
-    } else {
+    try {
       axios
         .post("http://localhost:9000/newtodo", {
           name,
@@ -31,36 +26,33 @@ function New() {
           fortschritt,
         })
         .then(() => {
-          setState({ name: "", deadline: "", fortschritt: "" });
-        })
-        .catch((err) => toast.error(err.response.data));
-      toast.success("Todo hinzuugefügt");
-      setTimeout(() => history.push("/"), 400);
+          navigate("/");
+        });
+    } catch (err) {
+      console.log(err);
     }
-  };
+  }
 
+  //eingabe der daten
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setState({ ...state, [name]: value });
+    setTodo({ ...todo, [name]: value });
   };
 
   return (
     <>
       {" "}
-      {/* shouldnt the form have its closing tag at the end of the form?- i changed it, see link above */}
-      {/* my mistake - didn't even recognized it before */}
       <form method="put" onSubmit={handleSubmit}>
         <main className="container mt-4">
           <h1>Neues TODO</h1>
         </main>
         <div className="container mt-3">
+          {/* name */}
           <div className="input-group mt-3">
             <span className="input-group-text">
               <label htmlFor="name">Name</label>
             </span>
             <input
-              type="text"
-              id="name"
               name="name"
               className="form-control"
               placeholder="Name der neuen Todo"
@@ -68,15 +60,12 @@ function New() {
               onChange={handleInputChange}
             />
           </div>
-
+          {/* deadline */}
           <div className="input-group mt-3">
             <span className="input-group-text">
               <label htmlFor="deadline">Deadline</label>
             </span>
-
             <input
-              type="text"
-              id="deadline"
               name="deadline"
               className="form-control"
               placeholder="Tag - Monat - Jahr"
@@ -84,15 +73,12 @@ function New() {
               onChange={handleInputChange}
             />
           </div>
-
+          {/* progress */}
           <div className="input-group mt-3">
             <span className="input-group-text">
               <label htmlFor="fortschritt">Fortschritt</label>
             </span>
-
             <input
-              type="text"
-              id="fortschritt"
               name="fortschritt"
               className="form-control"
               placeholder="%"
@@ -100,20 +86,14 @@ function New() {
               onChange={handleInputChange}
             />
           </div>
-          {/* use a button, not a link tag. i fixed this one, fix the one for Abbrechen*/}
           <div className="d-grid gap-2 mt-3">
-            <button
-              className="btn btn-primary"
-              type="submit"
-              onClick={handleSubmit}
-              to="/"
-            >
+            <button className="btn btn-primary" onClick={handleSubmit} to="/">
               Speichern
             </button>
           </div>
 
           <div className="d-grid gap-2 mt-3">
-            <Link className="btn btn-secondary" type="button" to="/">
+            <Link className="btn btn-secondary" to="/">
               Abbrechen
             </Link>
           </div>
