@@ -17,7 +17,7 @@ getTodo.get("/:id", async (req, res, next) => {
     const rows = await pool.query("SELECT * FROM todos WHERE id= ?", [todoId]);
     return res.status(200).send(rows);
   } catch (error) {
-    console.error("Error retrieving todo:", err);
+    console.error("Error retrieving todo:", error);
     res.status(500).send("Error retrieving todo");
     next(error);
   }
