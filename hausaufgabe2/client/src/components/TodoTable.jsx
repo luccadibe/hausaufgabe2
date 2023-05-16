@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-
+//something is wrong with the positioning of the table elements
+//they are not correctly alligned
 function TodoTable() {
   const [data, setData] = useState([]);
 

@@ -16,15 +16,13 @@ function Footer() {
         </button>
       </div>
 
-      <div style={{ minHeight: "120px" }}>
-        <div
-          className="collapse collapse-horizontal position-fixed bottom-50 end-0"
-          id="collapseWidthExample"
-        >
-          <div className="card card-body" style={{ width: "250px" }}>
-            <p>Lucca Di Benedetto</p>
-            <p>Jakub Kwinta ©TU-Berlin</p>
-          </div>
+      <div
+        className="collapse collapse-horizontal position-fixed bottom-50 end-0"
+        id="collapseWidthExample"
+      >
+        <div className="card card-body" style={{ width: "250px" }}>
+          <p>Lucca Di Benedetto &</p>
+          <p>Jakub Kwinta ©TU-Berlin</p>
         </div>
       </div>
     </>

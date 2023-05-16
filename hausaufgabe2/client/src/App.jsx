@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <div style={{ backgroundColor: "white" }}>
       <NavBar></NavBar>
       <Routes>
         <Route path="/" element={<Home />} />
