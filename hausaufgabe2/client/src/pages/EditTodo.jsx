@@ -10,6 +10,7 @@ const initialState = {
 };
 //it would be much  better if the placeholders were the actual name , deadline and fortschritt
 //of the todo !
+//understand - i will try to get it now
 function EditTodo() {
   const [state, setState] = useState(initialState);
 
@@ -123,8 +124,6 @@ function EditTodo() {
             onChange={handleInputChange}
           />
         </div>
-
-        {/* damit bin ich nicht sicher  */}
 
         <div className="d-grid gap-2 mt-3">
           <button

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 //something is wrong with the positioning of the table elements
 //they are not correctly alligned
+//i will take care of it now
 function TodoTable() {
   const [data, setData] = useState([]);
 

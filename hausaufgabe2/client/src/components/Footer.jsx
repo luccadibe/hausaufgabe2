@@ -1,5 +1,7 @@
 import "../App.css";
 
+// really like the idea of collapse button
+
 function Footer() {
   return (
     <>

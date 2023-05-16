@@ -48,6 +48,7 @@ function New() {
     <>
       {" "}
       {/* shouldnt the form have its closing tag at the end of the form?- i changed it, see link above */}
+      {/* my mistake - didn't even recognized it before */}
       <form method="put" onSubmit={handleSubmit}>
         <main className="container mt-4">
           <h1>Neues TODO</h1>
