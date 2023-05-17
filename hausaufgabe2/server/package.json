@@ -8,7 +8,7 @@
   "start": "node server.js",  
   "dev": "nodemon server.js"
   },
-  "author": "Lucca Di Benedetto, Jakub Kwintala",
+  "author": "Lucca Di Benedetto, Jakub Kwinta",
   "license": "MIT",
   "dependencies": {
   "cors": "^2.8.5",

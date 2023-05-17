@@ -4,7 +4,7 @@ const table = require("./src/controllers/table");
 const newTodo = require("./src/controllers/new_todo");
 const editTodo = require("./src/controllers/edit_todo");
 const deleteTodo = require("./src/controllers/delete_todo");
-
+const getTodo = require("./src/controllers/get_todo");
 const dotenv = require("dotenv").config();
 const app = express();
 const mysql = require("mysql2");
@@ -23,6 +23,7 @@ app.use("/", table);
 app.use("/newtodo", newTodo);
 app.use("/edittodo", editTodo);
 app.use("/deletetodo", deleteTodo);
+app.use("/gettodo", getTodo);
 
 app.listen(port, () => {
   console.log(`Server  running on port ${port}`);

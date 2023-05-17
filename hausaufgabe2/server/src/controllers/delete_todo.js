@@ -2,11 +2,11 @@ const Router = require("express");
 
 const deleteTodo = Router();
 
-deleteTodo.delete("/", async (req, res) => {
+deleteTodo.delete("/:id", async (req, res) => {
   // TEST
   console.log("test deleting id");
   // TEST
-  const { id } = req.body;
+  const todoId = req.params.id;
 
   const mysql = require("mysql2");
   const pool = mysql
@@ -21,7 +21,7 @@ deleteTodo.delete("/", async (req, res) => {
   const query = `DELETE FROM todos WHERE id = ?`;
   try {
     //something is causing the server to hang at this stage, idk what
-    const [result] = await pool.execute(query, [id]);
+    const [result] = await pool.execute(query, [todoId]);
     if (result.affectedRows === 0) {
       console.log("Todo not found");
       res.status(404).send("Todo not found");

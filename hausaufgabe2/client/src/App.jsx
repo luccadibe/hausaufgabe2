@@ -8,12 +8,12 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <div style={{ backgroundColor: "white" }}>
       <NavBar></NavBar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
-        <Route path="/edittodo" element={<EditTodo />} />
+        <Route path="/edittodo/:id" element={<EditTodo />} />
       </Routes>
       <Footer />
     </div>
