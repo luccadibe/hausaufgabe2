@@ -7,9 +7,7 @@ const initialTodos = {
   deadline: "",
   fortschritt: "",
 };
-//it would be much  better if the placeholders were the actual name , deadline and fortschritt
-//of the todo !
-//understand - i will try to get it now
+
 function EditTodo() {
   const [todo, setTodo] = useState(initialTodos);
 
@@ -25,7 +23,7 @@ function EditTodo() {
       .then((resp) => setState({ ...resp.data[0] }));
   }, [id]);
 
-  //sendung der neuen Daten an backend server
+  //sending new data to backend server
   function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -44,7 +42,7 @@ function EditTodo() {
     }
   }
 
-  // eingabe der neuen daten
+  // input of new data
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTodo({ ...todo, [name]: value });

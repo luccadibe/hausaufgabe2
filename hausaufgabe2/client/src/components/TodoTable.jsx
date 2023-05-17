@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-//something is wrong with the positioning of the table elements
-//they are not correctly alligned
-//i will take care of it now
-//should be fixed - it looks bit stupid when names of todo are really short
+
 function TodoTable() {
   const [data, setData] = useState([]);
 

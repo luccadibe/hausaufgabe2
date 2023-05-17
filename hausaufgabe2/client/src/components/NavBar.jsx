@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 
-// deleted link to home page because we got Home button - i think it makes sense
-
 function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
