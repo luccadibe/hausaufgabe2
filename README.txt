@@ -5,14 +5,31 @@ gerendert werden. wir können eine Datenstruktur wählen (ich denke einfach eine
 dynamisch programmieren (das ist der Vorteil von React.) d.h. im Code würden wir mit javascript
 die Daten aus eine Liste rausholen und dynamisch HTML erzeugen.
 
-scheint mir eine gute Idee zu sein - Jakub
+das müssen wir noch machen:
+Außerdem soll eine README.md erstellt werden, welche eine Anleitung enthält, wie die Anwendung gestartet wird.
+i made just template
 
+# Todo-Tracker
 
-Nur zur Info:
-ich wollte noch das was ich gemacht habe mit MySQL kontrollieren und ausprobieren.
-ich habe leider immer einem error und kann dem nicht beheben (schon paar Stunden damit verbracht):
-    TypeError: Cannot read properties of undefined (reading 'isServer')
-    ...
-    [nodemon] app crashed - waiting for file changes before starting...
-deswegen bin ich auch nicht sicher ob die Tabelle dynamisch arbeitet.
-sag bescheid ob es bei dir funktioniert
+### made by Lucca di Benedetto & Jakub Kwinta
+
+### overview
+- React for Frontend
+- Node for Backend
+- MySQL for Database
+
+## Usage
+1. Open server-folder in integrated terminal
+2. type
+```
+npm run dev
+```
+3. Open client-folder in integrated terminal
+4. type
+```
+npm run dev
+```
+5. On terminal will be shown a localhost link to page
+6. By clicking it you will geet to our homepage
+7. Have fun using our todo-trackers
+
