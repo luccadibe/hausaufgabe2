@@ -15,6 +15,7 @@ function New() {
 
   const navigate = useNavigate();
 
+
   //sendung der Daten an backend server
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +29,7 @@ function New() {
         .then(() => {
           navigate("/");
         });
+
     } catch (err) {
       console.log(err);
     }
@@ -42,6 +44,7 @@ function New() {
   return (
     <>
       {" "}
+
       <form method="put" onSubmit={handleSubmit}>
         <main className="container mt-4">
           <h1>Neues TODO</h1>
@@ -91,6 +94,7 @@ function New() {
               Speichern
             </button>
           </div>
+
 
           <div className="d-grid gap-2 mt-3">
             <Link className="btn btn-secondary" to="/">
