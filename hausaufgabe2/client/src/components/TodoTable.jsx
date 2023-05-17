@@ -65,7 +65,7 @@ function TodoTable() {
                     <Link to={`/edittodo/${item.id}`}>
                       <button
                         className="btn btn-secondary"
-                        style={{ marginRight: 5 }}
+                        style={{ margin: 3 }}
                       >
                         Bearbeiten
                       </button>
@@ -74,7 +74,7 @@ function TodoTable() {
                       <button
                         className="btn btn-danger"
                         onClick={() => deleteTodo(item.id)}
-                        style={{ marginLeft: 5 }}
+                        style={{ margin: 3 }}
                       >
                         Löschen
                       </button>
